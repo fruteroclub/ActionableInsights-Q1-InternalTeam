@@ -7,331 +7,456 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @media print {
+      .no-print { display: none; }
       .page-break { page-break-after: always; }
-      a[href]:after { content: ""; }
     }
   </style>
 </head>
 <body class="bg-zinc-950 text-zinc-100 antialiased">
-  <main class="mx-auto max-w-[900px] px-6 py-10">
+  <main class="mx-auto max-w-[1100px] px-6 py-10">
 
     <!-- Header -->
-    <header class="flex items-center justify-between gap-6">
+    <header class="mb-8 flex items-center justify-between gap-6">
       <div class="flex items-center gap-4">
-        <img src="https://raw.githubusercontent.com/fruteroclub/frutero-decks/master/public/images/logos/frutero-logo.svg" alt="Frutero Club" class="h-9 w-9" />
+        <img src="https://raw.githubusercontent.com/fruteroclub/frutero-decks/master/public/images/logos/frutero-logo.svg" alt="Frutero Club" class="h-10 w-10" />
         <div>
-          <h1 class="text-xl font-semibold tracking-tight">Frutero Club — Insights Operativos del Equipo</h1>
-          <p class="text-sm text-zinc-400">Análisis interno de flujos de trabajo · Q1 · Coordinación, procesos y fricciones operativas</p>
+          <h1 class="text-2xl font-bold tracking-tight">Insights Operativos del Equipo</h1>
+          <p class="text-sm text-zinc-400">Análisis interno de flujos de trabajo · Q1 2026</p>
         </div>
       </div>
       <div class="text-right">
         <p class="text-xs text-zinc-500">Confidencial · Equipo interno</p>
-        <p class="text-xs text-zinc-500">Formato: 2 páginas</p>
+        <p class="text-xs text-zinc-500">Frutero Club</p>
       </div>
     </header>
 
-    <div class="mt-8 grid grid-cols-1 gap-4">
-      <!-- Executive Summary -->
-      <section class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
-        <h2 class="text-sm font-semibold text-zinc-200">Executive Summary</h2>
-        <p class="mt-3 text-sm leading-relaxed text-zinc-300">
-          El equipo muestra <span class="text-zinc-100 font-medium">alta capacidad de ejecución</span> (tech/devrel strong ownership),
-          pero opera con un sistema de coordinación <span class="text-zinc-100 font-medium">basado en chat y sincronías ad-hoc</span>.
-          Esto crea fricción estructural: baja visibilidad cross-área, handoffs incompletos, cambios de prioridad sin protocolo y dependencia
-          de personas clave (CEO/MKT/Tech). El resultado es un costo oculto: <span class="text-zinc-100 font-medium">tiempo perdido en check-ins, re-trabajo por pivots, y desgaste</span>
-          en contenido/comunidad.
+    <!-- Tabs Navigation -->
+    <div class="no-print mb-6 flex gap-2 border-b border-zinc-800">
+      <button onclick="switchTab('executive')" id="tab-executive" class="tab-btn active px-6 py-3 text-sm font-medium transition-colors border-b-2 border-transparent hover:border-zinc-600">
+        Resumen Ejecutivo
+      </button>
+      <button onclick="switchTab('indepth')" id="tab-indepth" class="tab-btn px-6 py-3 text-sm font-medium transition-colors border-b-2 border-transparent hover:border-zinc-600">
+        Análisis In-Depth
+      </button>
+    </div>
+
+    <!-- Tab Content: Executive Summary -->
+    <div id="content-executive" class="tab-content">
+      
+      <!-- Key Findings -->
+      <section class="mb-6 rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
+        <h2 class="mb-4 text-lg font-semibold text-zinc-100">🎯 Hallazgos Clave</h2>
+        <p class="text-sm leading-relaxed text-zinc-300">
+          El equipo es <strong class="text-zinc-100">competente y autónomo en ejecución</strong> (tech, devrel, content), 
+          pero el sistema operativo actual genera <strong class="text-zinc-100">fricción estructural</strong>: 
+          baja visibilidad cross-área, handoffs ambiguos, cambios de prioridad sin protocolo, y dependencia 
+          de roles clave (CEO/MKT/Tech). El resultado: <strong class="text-zinc-100">tiempo perdido en coordinación, 
+          re-trabajo, y desgaste</strong> especialmente en MKT/Content/Community.
         </p>
       </section>
 
-      <!-- Top pain points + Actions -->
-      <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
-          <h2 class="text-sm font-semibold text-zinc-200">Top 5 Pain Points Operativos</h2>
-          <ol class="mt-4 space-y-3 text-sm text-zinc-300 list-decimal list-inside">
-            <li><span class="text-zinc-100 font-medium">Falta de visibilidad/estado</span>: no hay dashboard por área/proyecto; se depende de preguntar 1:1 / TG / daily.</li>
-            <li><span class="text-zinc-100 font-medium">Handoffs incompletos</span>: info llega tarde o ambigua (fechas, responsables, contexto, “por qué/para qué”).</li>
-            <li><span class="text-zinc-100 font-medium">Prioridades fluidas sin protocolo</span>: cambios repentinos → re-trabajo, frustración y sobreplaneación.</li>
-            <li><span class="text-zinc-100 font-medium">Tool sprawl + saturación</span>: Telegram/Gather/Notion/Discord/Drive + múltiples IAs; Telegram/Notion se perciben saturados y se pierde info.</li>
-            <li><span class="text-zinc-100 font-medium">Single points of failure</span>: CEO centraliza dirección; MKT saturado; Tech soporte depende de una persona; lives dependen de un rol.</li>
-            <li><span class="text-zinc-100 font-medium">Decisiones poco distribuidas</span>: se espera “que alguien dé la respuesta”; COO/Ops/MKT deberían decidir más (especialmente calendario de contenido).</li>
-            <li><span class="text-zinc-100 font-medium">Aprendizajes no capturados</span>: no existe repositorio/ritual de learnings; mucho vive en memoria y se pierde (prompts, procesos, reporteo, comunidad).</li>
-            <li><span class="text-zinc-100 font-medium">Visión/rumbo insuficientemente explícito</span>: varias áreas piden claridad de mediano-largo plazo para decidir y priorizar.</li>
-          </ol>
-        </div>
-
-        <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
-          <h2 class="text-sm font-semibold text-zinc-200">Acciones Prioritarias (impacto alto)</h2>
-          <div class="mt-4 space-y-4">
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-sm font-medium text-zinc-100">1) “Sistema Operativo” mínimo (SSOT + estado)</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Qué cambiar:</span> 1 tablero por proyecto (no kanban suelto) + “Now / Next / Blocked” semanal.</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Por qué:</span> hoy hay baja visibilidad (“me entero en el daily / radio pasillo”).</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Impacto:</span> +claridad cross-área, -tiempo en coordinación.</p>
+      <!-- Actionable Insights Grid -->
+      <section class="mb-6">
+        <h2 class="mb-4 text-lg font-semibold text-zinc-100">📋 Insights Accionables (Prioridad Alta)</h2>
+        <div class="grid gap-4 md:grid-cols-2">
+          
+          <!-- Insight 1 -->
+          <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5">
+            <div class="mb-2 flex items-center gap-2">
+              <span class="text-2xl">📊</span>
+              <h3 class="font-semibold text-zinc-100">1. Dashboard de Visibilidad</h3>
             </div>
-
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-sm font-medium text-zinc-100">1.5) Decision Rights (DRI) por dominio</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Qué cambiar:</span> asignar un <span class="text-zinc-100 font-medium">DRI</span> por: calendario de contenido, programas, soporte, producto, marketing.</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Por qué:</span> el equipo espera confirmación; decisiones se concentran y retrasan.</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Impacto:</span> menos cuello de botella del founder, +autonomía real.</p>
-            </div>
-
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-sm font-medium text-zinc-100">2) Briefs obligatorios para handoffs (RACI + Definition of Done)</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Qué cambiar:</span> template corto: propósito, dueño, fecha, entregable, dependencias, “listo cuando…”.</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Por qué:</span> hoy la ambigüedad bloquea y genera re-trabajo.</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Impacto:</span> menos improvisación, menos pivots costosos.</p>
-            </div>
-
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-sm font-medium text-zinc-100">3) Protocolo de cambios de prioridad ("change window")</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Qué cambiar:</span> cambios solo en 2 momentos/semana salvo incidentes; registrar “por qué” y qué se deja de hacer.</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Por qué:</span> la volatilidad pega directo a MKT/edición/comunidad.</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Impacto:</span> protege foco, reduce desgaste.</p>
-            </div>
-
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-sm font-medium text-zinc-100">4) Desacoplar soporte y operaciones de Tech Lead</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Qué cambiar:</span> triage (Community/ops) + cola de issues; Tech solo ve lo que realmente es bug/feature.</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Por qué:</span> “todo soporte depende de mí” = cuello de botella.</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Impacto:</span> velocidad en producto + menos interrupciones.</p>
-            </div>
-
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-sm font-medium text-zinc-100">5) Pipeline de contenido (calendario + dueño + SLA)</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Qué cambiar:</span> calendario mensual (mínimo viable), checklist por pieza (copy → assets → edición → revisión → publicación).</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Por qué:</span> contenido es el área con mayor retraso y dependencia.</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Impacto:</span> consistencia, menos estrés por “último minuto”.</p>
-            </div>
-
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-sm font-medium text-zinc-100">6) Automation Layer (agentes + brain común + resúmenes)</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Qué cambiar:</span> agentes que: resumen TG, extraen tareas/decisiones, alimentan dashboard y generan calendario de contenido; triage de soporte.</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Por qué:</span> hoy leer/coordinar consume energía; el equipo pide “cerebro común” y que agentes se anticipen.</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Impacto:</span> +20–30% efectividad sin más horas; menos overload cognitivo.</p>
-            </div>
-
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-sm font-medium text-zinc-100">7) Learning Loop institucional (repo + postmortems + prompt hygiene)</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Qué cambiar:</span> 1 repositorio de learnings (por área) + postmortem breve por programa/cliente + guía de prompts/errores comunes.</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Por qué:</span> hoy los aprendizajes se pierden; se repiten errores y se depende de memoria individual.</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Impacto:</span> mejora continua real, onboarding más rápido, más consistencia en operaciones.</p>
-            </div>
-
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-sm font-medium text-zinc-100">8) “North Star + Roadmap” visible (90 días)</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Qué cambiar:</span> 1 página: visión 12 meses + enfoque 90 días + 3 bets (con trade-offs explícitos).</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Por qué:</span> el equipo pide rumbo para alinear decisiones y reducir pivots por "ruido" tecnológico.</p>
-              <p class="mt-1 text-sm text-zinc-300"><span class="text-zinc-200">Impacto:</span> foco, autonomía, y coherencia entre áreas.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Quick wins + Strategic opportunity -->
-      <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
-          <h2 class="text-sm font-semibold text-zinc-200">Quick Wins (30 días)</h2>
-          <ul class="mt-4 space-y-3 text-sm text-zinc-300">
-            <li>• Crear <span class="text-zinc-100 font-medium">Weekly Ops Note</span> (1 página): Now/Next/Blocked + owners + decisiones.</li>
-            <li>• Template único de <span class="text-zinc-100 font-medium">brief</span> para eventos/lives/contenido (fechas, títulos, responsables).</li>
-            <li>• “Office hours” 2x/semana para desbloqueos (evita mensajes 1:1 constantes).</li>
-            <li>• Reducir <span class="text-zinc-100 font-medium">taxonomía de canales</span>: menos chats, un canal de anuncios/estado; crear un digest semanal.</li>
-            <li>• Delegar respuestas repetitivas: <span class="text-zinc-100 font-medium">FAQ + macros</span> (TG) y triage básico.</li>
-            <li>• Automatizar tareas: checklist de cohorts, calificación/revisión básica, POAPs recurrentes.</li>
-            <li>• Definir <span class="text-zinc-100 font-medium">métricas de “buen trabajo”</span> por área (2–3 KPIs + 1 señal cualitativa) y revisarlas semanalmente.</li>
-            <li>• Instalar el hábito: <span class="text-zinc-100 font-medium">"Board first"</span> (si no está en el board, no existe): fechas inicio/fin + responsable + DoD.</li>
-            <li>• Calendario de próximas actividades (30–60 días) + <span class="text-zinc-100 font-medium">SMART goals</span> por programa (reduce ansiedad por falta de fechas/propósito).</li>
-          </ul>
-        </div>
-        <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
-          <h2 class="text-sm font-semibold text-zinc-200">Oportunidad Estratégica: “AI Operating System”</h2>
-          <p class="mt-3 text-sm leading-relaxed text-zinc-300">
-            Frutero ya usa IA para planeación/copy/estrategia. La oportunidad es instrumentar IA como
-            <span class="text-zinc-100 font-medium">infraestructura operativa</span>: dashboards vivos (proyectos, KPIs, riesgos), agentes para
-            triage de soporte, generación de briefs, seguimiento de SLA y retroalimentación post-mortem.
-          </p>
-          <div class="mt-4 grid grid-cols-1 gap-3 text-sm">
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-zinc-100 font-medium">MVP (30 días)</p>
-              <p class="mt-1 text-zinc-300">Dashboard: proyectos + owners + blockers + próximos hitos. Agente: “brief builder”.</p>
-            </div>
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-zinc-100 font-medium">Evolución (60–90 días)</p>
-              <p class="mt-1 text-zinc-300">Automatización: triage comunidad, reportes por área, alertas de overload y dependencias.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <div class="page-break"></div>
-
-    <!-- PAGE 2 -->
-    <section class="mt-2">
-      <h2 class="text-lg font-semibold tracking-tight">Análisis profundo de patrones</h2>
-      <p class="mt-2 text-sm text-zinc-400">Lectura estratégica: patrones, cultura, riesgos y fricciones estructurales.</p>
-
-      <div class="mt-6 grid grid-cols-1 gap-4">
-        <section class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
-          <h3 class="text-sm font-semibold text-zinc-200">1) Patrones organizacionales detectados</h3>
-          <ul class="mt-4 space-y-3 text-sm text-zinc-300">
-            <li>• <span class="text-zinc-100 font-medium">Operación en chat</span>: coordinación principal en Telegram + dailys; el chat se satura y “se pierden cosas”.</li>
-            <li>• <span class="text-zinc-100 font-medium">Conocimiento tácito</span>: “urgente/importante vive en mi mente” → baja transferibilidad.</li>
-            <li>• <span class="text-zinc-100 font-medium">Ejecución fuerte, planeación débil</span>: se trabaja “sobre la marcha”, especialmente en contenido y programas.</li>
-            <li>• <span class="text-zinc-100 font-medium">Dependencia de approvals</span>: “luz verde” y cambios de dirección se concentran en dirección/CEO.</li>
-            <li>• <span class="text-zinc-100 font-medium">Visibilidad reactiva</span>: muchas cosas se descubren tarde (dailys, TG, coworkings) en vez de en un sistema.</li>
-            <li>• <span class="text-zinc-100 font-medium">Fragmentación de canales</span>: Discord/TG no están conectados; quien no está en ambos pierde información.</li>
-          </ul>
-        </section>
-
-        <section class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
-          <h3 class="text-sm font-semibold text-zinc-200">2) Tendencias culturales del equipo</h3>
-          <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-zinc-100 font-medium">Builder mindset + autonomía</p>
-              <p class="mt-1 text-zinc-300">Se resuelve rápido; tech/devrel operan con ownership y tickets.</p>
-            </div>
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-zinc-100 font-medium">Alta adopción de IA</p>
-              <p class="mt-1 text-zinc-300">IA para planeación/redacción/estrategia; falta “IA como sistema”.</p>
-            </div>
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-zinc-100 font-medium">Orientación a impacto</p>
-              <p class="mt-1 text-zinc-300">Comunidad y programas mueven sentido; el costo es carga operativa.</p>
-            </div>
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-zinc-100 font-medium">Elasticidad operativa</p>
-              <p class="mt-1 text-zinc-300">Se adapta “a evolución natural”, útil… hasta que escala.</p>
-            </div>
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-zinc-100 font-medium">Feedback principalmente reactivo</p>
-              <p class="mt-1 text-zinc-300">Se valida “cuando ya salió” (producción) y se corrige con microajustes; se pide feedback tarde en varias áreas.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
-          <h3 class="text-sm font-semibold text-zinc-200">3) Riesgos operativos</h3>
-          <ul class="mt-4 space-y-3 text-sm text-zinc-300">
-            <li>• <span class="text-zinc-100 font-medium">Single point of failure</span>: CEO y MKT overload; Tech soporte depende de 1 persona.</li>
-            <li>• <span class="text-zinc-100 font-medium">Burnout</span>: contenido multi-plataforma + coordinación ad-hoc + comunidad = drenaje sostenido.</li>
-            <li>• <span class="text-zinc-100 font-medium">Pérdida de conocimiento</span>: sin SSOT + sin repositorio de learnings, el sistema no es auditable ni replicable.</li>
-            <li>• <span class="text-zinc-100 font-medium">Improvisación sistemática</span>: pivots sin “change protocol” multiplican costos.</li>
-            <li>• <span class="text-zinc-100 font-medium">Calidad no instrumentada</span>: “buen trabajo” se mide por vibes/ausencia de quejas/ship a prod, no por métricas consistentes.</li>
-          </ul>
-        </section>
-
-        <section class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
-          <h3 class="text-sm font-semibold text-zinc-200">4) Fricciones estructurales (handoffs + visibilidad)</h3>
-          <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-zinc-100 font-medium">Contenido ↔ Operaciones</p>
-              <p class="mt-1 text-zinc-300">Fechas/títulos/lugares llegan tarde → bloqueo de comunicación y calendarización.</p>
-            </div>
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-zinc-100 font-medium">Comunidad ↔ Tech</p>
-              <p class="mt-1 text-zinc-300">Soporte técnico entra sin triage; features “tarde” interrumpen desarrollo.</p>
-            </div>
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-zinc-100 font-medium">Marketing ↔ DevRel</p>
-              <p class="mt-1 text-zinc-300">Calendario y assets de video condicionan publicación; backlog de edición manual.</p>
-            </div>
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-zinc-100 font-medium">Dirección ↔ Ejecución</p>
-              <p class="mt-1 text-zinc-300">Decisiones unilaterales + cambios sin contexto → re-trabajo y confusión.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
-          <h3 class="text-sm font-semibold text-zinc-200">5) Fortalezas a preservar (no romper)</h3>
-          <ul class="mt-4 space-y-3 text-sm text-zinc-300">
-            <li>• <span class="text-zinc-100 font-medium">Rituales y dailys</span>: dan claridad y cohesión; preservar consistencia.</li>
-            <li>• <span class="text-zinc-100 font-medium">Tacto humano + apapacho</span>: sensación de “lugar seguro” para la comunidad.</li>
-            <li>• <span class="text-zinc-100 font-medium">Camaradería/ethos builder</span>: shippear rápido, apoyo mutuo, autonomía responsable.</li>
-            <li>• <span class="text-zinc-100 font-medium">Escucha activa de comunidad</span>: vinculación y reconocimiento (POAPs, seguimiento) como ventaja competitiva.</li>
-          </ul>
-        </section>
-
-        <section class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
-          <h3 class="text-sm font-semibold text-zinc-200">6) Señales de foco y calma (lo que el equipo está pidiendo)</h3>
-          <ul class="mt-4 space-y-3 text-sm text-zinc-300">
-            <li>• <span class="text-zinc-100 font-medium">Fechas y calendario</span>: saber inicio/fin, próximos hitos, y no cambiar planes abruptamente.</li>
-            <li>• <span class="text-zinc-100 font-medium">Propósito explícito</span>: “por qué/para qué” antes de ejecutar.</li>
-            <li>• <span class="text-zinc-100 font-medium">Materiales listos y organizados</span>: poder avanzar sin esperar a alguien.</li>
-            <li>• <span class="text-zinc-100 font-medium">Accountability distribuida</span>: que cada quien se haga cargo sin recordatorios constantes.</li>
-          </ul>
-        </section>
-
-        <section class="rounded-xl border border-zinc-800 bg-gradient-to-b from-zinc-900/50 to-zinc-900/20 p-6">
-          <h3 class="text-sm font-semibold text-zinc-200">7) Insight estratégico para liderazgo</h3>
-          <p class="mt-3 text-sm leading-relaxed text-zinc-200">
-            <span class="font-medium text-white">El equipo tiene alta capacidad de ejecución, pero carece de infraestructura operativa que escale esa energía sin quemarla.</span>
-            Hoy el “sistema” vive en conversaciones, memoria individual y decisiones reactivas. A corto plazo funciona; a mediano plazo
-            se vuelve un impuesto: el crecimiento aumenta ruido, y el ruido degrada velocidad (y calma).
-          </p>
-          <div class="mt-4 rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-            <p class="text-sm text-zinc-300">
-              <span class="text-zinc-100 font-medium">Decisión recomendada:</span> Instituir un OS mínimo (board por proyecto + briefs + change protocol + DRI) antes de añadir más herramientas.
-              No es “más Notion”; es <span class="text-zinc-100 font-medium">gobernanza ligera</span> + automatización puntual para proteger foco, reducir dependencia y liberar capacidad para revenue.
+            <p class="mb-3 text-sm text-zinc-300">
+              <strong class="text-zinc-200">Problema:</strong> "Tengo que preguntar 1:1 qué está pasando" — no hay visibilidad cross-área.
+            </p>
+            <p class="mb-3 text-sm text-zinc-300">
+              <strong class="text-zinc-200">Solución:</strong> 1 tablero por proyecto con estado "Now / Next / Blocked" (semanal).
+            </p>
+            <p class="text-sm text-zinc-400">
+              <strong class="text-zinc-200">Impacto:</strong> -30% tiempo en coordinación, +claridad para decidir.
             </p>
           </div>
-        </section>
 
-        <section class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
-          <h3 class="text-sm font-semibold text-zinc-200">8) Cierre humano (motivación + necesidades no cubiertas)</h3>
-          <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-zinc-100 font-medium">Motivadores dominantes</p>
-              <ul class="mt-2 space-y-2 text-zinc-300">
-                <li>• Innovación y uso avanzado de IA</li>
-                <li>• Impacto real: ver gente crecer (educación/comunidad)</li>
-                <li>• Aprendizaje constante y progreso del equipo</li>
-                <li>• Orgullo: “no hay un solo cliente al que le hayamos quedado mal”</li>
-              </ul>
+          <!-- Insight 2 -->
+          <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5">
+            <div class="mb-2 flex items-center gap-2">
+              <span class="text-2xl">🎯</span>
+              <h3 class="font-semibold text-zinc-100">2. Decision Rights (DRI)</h3>
             </div>
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-zinc-100 font-medium">Lo que el equipo quiere que se entienda</p>
-              <ul class="mt-2 space-y-2 text-zinc-300">
-                <li>• Cambios “simples” requieren protocolo (infra/servers/branches)</li>
-                <li>• Editar video + lives es trabajo pesado (tiempo/atención)</li>
-                <li>• “No me corresponde entrar, me corresponde ver”: visibilidad ≠ microgestión</li>
-                <li>• Si cada quien hace su trabajo, se libera capacidad para revenue/growth</li>
-                <li>• Claridad en pagos/licencias/recursos (evitar fricción de “estar preguntando”)</li>
-                <li>• Necesidad explícita: descanso y sostenibilidad (burnout prevention)</li>
-              </ul>
+            <p class="mb-3 text-sm text-zinc-300">
+              <strong class="text-zinc-200">Problema:</strong> "Espero luz verde" — decisiones se concentran en CEO, retrasan flujo.
+            </p>
+            <p class="mb-3 text-sm text-zinc-300">
+              <strong class="text-zinc-200">Solución:</strong> Asignar DRI por dominio (calendario, programas, soporte, producto).
+            </p>
+            <p class="text-sm text-zinc-400">
+              <strong class="text-zinc-200">Impacto:</strong> Menos cuello de botella, +autonomía real del equipo.
+            </p>
+          </div>
+
+          <!-- Insight 3 -->
+          <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5">
+            <div class="mb-2 flex items-center gap-2">
+              <span class="text-2xl">📝</span>
+              <h3 class="font-semibold text-zinc-100">3. Briefs Obligatorios</h3>
+            </div>
+            <p class="mb-3 text-sm text-zinc-300">
+              <strong class="text-zinc-200">Problema:</strong> Handoffs incompletos (fechas ambiguas, sin contexto, sin "listo cuando…").
+            </p>
+            <p class="mb-3 text-sm text-zinc-300">
+              <strong class="text-zinc-200">Solución:</strong> Template corto: propósito, dueño, fecha, entregable, DoD.
+            </p>
+            <p class="text-sm text-zinc-400">
+              <strong class="text-zinc-200">Impacto:</strong> -50% re-trabajo por ambigüedad, menos improvisación.
+            </p>
+          </div>
+
+          <!-- Insight 4 -->
+          <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5">
+            <div class="mb-2 flex items-center gap-2">
+              <span class="text-2xl">🔄</span>
+              <h3 class="font-semibold text-zinc-100">4. Protocolo de Cambios</h3>
+            </div>
+            <p class="mb-3 text-sm text-zinc-300">
+              <strong class="text-zinc-200">Problema:</strong> Cambios repentinos de prioridad → frustración, sobreplaneación, re-trabajo.
+            </p>
+            <p class="mb-3 text-sm text-zinc-300">
+              <strong class="text-zinc-200">Solución:</strong> Cambios solo 2x/semana (salvo incidentes), registrar "por qué" y qué se deja.
+            </p>
+            <p class="text-sm text-zinc-400">
+              <strong class="text-zinc-200">Impacto:</strong> Protege foco, reduce desgaste en MKT/Content.
+            </p>
+          </div>
+
+          <!-- Insight 5 -->
+          <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5">
+            <div class="mb-2 flex items-center gap-2">
+              <span class="text-2xl">🛠️</span>
+              <h3 class="font-semibold text-zinc-100">5. Desacoplar Soporte de Tech</h3>
+            </div>
+            <p class="mb-3 text-sm text-zinc-300">
+              <strong class="text-zinc-200">Problema:</strong> "Todo soporte depende de mí" (Tech Lead) = cuello de botella.
+            </p>
+            <p class="mb-3 text-sm text-zinc-300">
+              <strong class="text-zinc-200">Solución:</strong> Triage (Community/Ops) + cola de issues. Tech solo ve bugs reales.
+            </p>
+            <p class="text-sm text-zinc-400">
+              <strong class="text-zinc-200">Impacto:</strong> +velocidad en producto, menos interrupciones.
+            </p>
+          </div>
+
+          <!-- Insight 6 -->
+          <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5">
+            <div class="mb-2 flex items-center gap-2">
+              <span class="text-2xl">📚</span>
+              <h3 class="font-semibold text-zinc-100">6. Repositorio de Learnings</h3>
+            </div>
+            <p class="mb-3 text-sm text-zinc-300">
+              <strong class="text-zinc-200">Problema:</strong> "Lo aprendido se pierde" — prompts, procesos, mejoras viven en memoria.
+            </p>
+            <p class="mb-3 text-sm text-zinc-300">
+              <strong class="text-zinc-200">Solución:</strong> Wiki/Notion con rituales de captura (retros, wins, prompts útiles).
+            </p>
+            <p class="text-sm text-zinc-400">
+              <strong class="text-zinc-200">Impacto:</strong> Menos re-inventar, onboarding más rápido.
+            </p>
+          </div>
+
+          <!-- Insight 7 -->
+          <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5">
+            <div class="mb-2 flex items-center gap-2">
+              <span class="text-2xl">🧭</span>
+              <h3 class="font-semibold text-zinc-100">7. Visión de Mediano Plazo</h3>
+            </div>
+            <p class="mb-3 text-sm text-zinc-300">
+              <strong class="text-zinc-200">Problema:</strong> "No tengo claridad para priorizar" — falta roadmap explícito de 3-6 meses.
+            </p>
+            <p class="mb-3 text-sm text-zinc-300">
+              <strong class="text-zinc-200">Solución:</strong> Roadmap público interno (trimestral) con prioridades y "por qué".
+            </p>
+            <p class="text-sm text-zinc-400">
+              <strong class="text-zinc-200">Impacto:</strong> Mejor alineación, menos second-guessing.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Quick Wins -->
+      <section class="mb-6 rounded-xl border border-amber-800/50 bg-amber-950/20 p-6">
+        <h2 class="mb-4 text-lg font-semibold text-amber-200">⚡ Quick Wins (implementar esta semana)</h2>
+        <ul class="space-y-2 text-sm text-zinc-300">
+          <li class="flex gap-2">
+            <span class="text-amber-400">→</span>
+            <span><strong class="text-zinc-200">Tablero Now/Next/Blocked:</strong> Notion simple, 15 min setup.</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-amber-400">→</span>
+            <span><strong class="text-zinc-200">DRI por dominio:</strong> Announce en el daily (2 min).</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-amber-400">→</span>
+            <span><strong class="text-zinc-200">Brief template:</strong> 1 Notion template reutilizable.</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-amber-400">→</span>
+            <span><strong class="text-zinc-200">Change window:</strong> Policy: cambios solo lunes/jueves 10am (salvo urgente).</span>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+
+    <!-- Tab Content: In-Depth Analysis -->
+    <div id="content-indepth" class="tab-content hidden">
+      
+      <!-- Section: Patterns -->
+      <section class="mb-6 rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
+        <h2 class="mb-4 text-lg font-semibold text-zinc-100">🔍 Patrones Identificados</h2>
+        
+        <div class="space-y-6">
+          
+          <!-- Pattern 1 -->
+          <div>
+            <h3 class="mb-2 text-sm font-semibold text-emerald-400">✅ Fortalezas del Equipo</h3>
+            <ul class="ml-4 space-y-1 text-sm text-zinc-300 list-disc">
+              <li><strong>Alta capacidad técnica:</strong> Tech, DevRel, Content son autónomos y competentes en ejecución.</li>
+              <li><strong>Adopción de IA:</strong> Todo el equipo usa Claude/Gemini/ChatGPT para acelerar trabajo (copys, código, estrategia).</li>
+              <li><strong>Ownership claro en áreas:</strong> Cada rol sabe qué debe entregar (reportes, features, contenido).</li>
+              <li><strong>Comunicación fluida 1:1:</strong> Telegram + Gather permiten resolver rápido cuando se necesita.</li>
+            </ul>
+          </div>
+
+          <!-- Pattern 2 -->
+          <div>
+            <h3 class="mb-2 text-sm font-semibold text-rose-400">⚠️ Fricciones Estructurales</h3>
+            <ul class="ml-4 space-y-1 text-sm text-zinc-300 list-disc">
+              <li><strong>Coordinación reactiva:</strong> Se pregunta status 1:1 en lugar de consultar dashboard central.</li>
+              <li><strong>Handoffs informales:</strong> Info llega por mensaje suelto sin contexto completo (fechas, responsables, DoD).</li>
+              <li><strong>Dependencia de personas clave:</strong> CEO centraliza dirección, MKT saturado, Tech atiende todo soporte.</li>
+              <li><strong>Tool sprawl:</strong> Telegram/Notion/Discord/Drive/GitHub — múltiples fuentes de verdad, info se pierde.</li>
+              <li><strong>Cambios de prioridad volátiles:</strong> Sin protocolo → re-trabajo, frustración, "sobreplaneación" defensiva.</li>
+            </ul>
+          </div>
+
+          <!-- Pattern 3 -->
+          <div>
+            <h3 class="mb-2 text-sm font-semibold text-amber-400">🧩 Áreas con Mayor Dependencia</h3>
+            <ul class="ml-4 space-y-1 text-sm text-zinc-300 list-disc">
+              <li><strong>MKT/Content:</strong> Depende de "luz verde", planeación de otras áreas, y videos listos de edición.</li>
+              <li><strong>Community:</strong> Necesita certeza en fechas/lugares, acceso directo a canales (hoy depende de MKT).</li>
+              <li><strong>Tech:</strong> Depende de requerimientos claros, permisos de admin, y pagos para servicios.</li>
+              <li><strong>Content:</strong> Depende de calendario coordinado para lives y eventos (fechas llegan tarde).</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Section: Sentimientos -->
+      <section class="mb-6 rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
+        <h2 class="mb-4 text-lg font-semibold text-zinc-100">💬 Sentimientos del Equipo</h2>
+        
+        <div class="space-y-4">
+          
+          <!-- Sentiment 1 -->
+          <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
+            <p class="mb-2 text-sm font-medium text-zinc-200">Falta de claridad en prioridades</p>
+            <p class="text-sm italic text-zinc-400">
+              "A veces siento que no estoy muy clara de lo que tengo que hacer. A veces hago comunidad, y a veces diseño, y a veces marketing." — Community Lead
+            </p>
+          </div>
+
+          <!-- Sentiment 2 -->
+          <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
+            <p class="mb-2 text-sm font-medium text-zinc-200">Necesidad de visibilidad</p>
+            <p class="text-sm italic text-zinc-400">
+              "Me gustaría dashboard con proyectos y recursos, actualmente tengo que estar preguntando." — CEO
+            </p>
+          </div>
+
+          <!-- Sentiment 3 -->
+          <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
+            <p class="mb-2 text-sm font-medium text-zinc-200">Dependencia de luz verde</p>
+            <p class="text-sm italic text-zinc-400">
+              "Directamente dependo de que me den luz verde con cosas, comunicación con la comunidad necesito certeza con fechas, lugares, requerimientos." — Community Lead
+            </p>
+          </div>
+
+          <!-- Sentiment 4 -->
+          <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
+            <p class="mb-2 text-sm font-medium text-zinc-200">Frustración con cambios de prioridad</p>
+            <p class="text-sm italic text-zinc-400">
+              "Se frustra un poco cuando algo que ya está planeado cambia repentinamente de dirección." — Observación de COO
+            </p>
+          </div>
+
+          <!-- Sentiment 5 -->
+          <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
+            <p class="mb-2 text-sm font-medium text-zinc-200">Cuello de botella en soporte</p>
+            <p class="text-sm italic text-zinc-400">
+              "Me llegan cosas de soporte técnico de los alumnos y comunidad." — Tech Lead (además de features/bugs)
+            </p>
+          </div>
+
+          <!-- Sentiment 6 -->
+          <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
+            <p class="mb-2 text-sm font-medium text-zinc-200">Info que se pierde</p>
+            <p class="text-sm italic text-zinc-400">
+              "Notion y Telegram están saturados, se pierde información importante." — Múltiples miembros
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Section: Respuestas por Tema -->
+      <section class="mb-6 rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
+        <h2 class="mb-4 text-lg font-semibold text-zinc-100">📊 Respuestas Agrupadas por Tema</h2>
+        
+        <div class="space-y-6">
+          
+          <!-- Theme: Coordinación -->
+          <div>
+            <h3 class="mb-3 text-sm font-semibold text-cyan-400">Coordinación y Flujo de Trabajo</h3>
+            <div class="space-y-3">
+              <div class="rounded border border-zinc-800 bg-zinc-950/20 p-3">
+                <p class="mb-1 text-xs font-medium text-zinc-400">CEO (Mel)</p>
+                <p class="text-sm text-zinc-300">"Juntas son para catch up. Telegram para comunicación desde el grupo. Tengo que estar preguntando status 1:1."</p>
+              </div>
+              <div class="rounded border border-zinc-800 bg-zinc-950/20 p-3">
+                <p class="mb-1 text-xs font-medium text-zinc-400">DevRel Lead (Brian)</p>
+                <p class="text-sm text-zinc-300">"Llamadas privadas 1:1, mensajes privados, de ahí grupo telegram, y feedback con equipo en los dailys."</p>
+              </div>
+              <div class="rounded border border-zinc-800 bg-zinc-950/20 p-3">
+                <p class="mb-1 text-xs font-medium text-zinc-400">Technical Lead (Scarf)</p>
+                <p class="text-sm text-zinc-300">"Coordinación uso mensajes privados en TG y juntas en Gather 1:1, Notion y Drive."</p>
+              </div>
             </div>
           </div>
-        </section>
 
-        <section class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
-          <h3 class="text-sm font-semibold text-zinc-200">9) 3 automatizaciones de agentes (alto ROI)</h3>
-          <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-zinc-100 font-medium">A) Resumen + acciones desde Telegram</p>
-              <p class="mt-1 text-zinc-300">Digest diario: decisiones, tareas, dueños, deadlines; y “preguntas abiertas”.</p>
-            </div>
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-zinc-100 font-medium">B) Calendario de contenido automático</p>
-              <p class="mt-1 text-zinc-300">Ideas → slots por canal/fecha + checklist de producción + recordatorios.</p>
-            </div>
-            <div class="rounded-lg border border-zinc-800 bg-zinc-950/30 p-4">
-              <p class="text-zinc-100 font-medium">C) Research/CRM pipeline</p>
-              <p class="mt-1 text-zinc-300">Tendencias/noticias + leads (fondos, hackathons, partners) → tablero con prioridad.</p>
+          <!-- Theme: Herramientas -->
+          <div>
+            <h3 class="mb-3 text-sm font-semibold text-purple-400">Herramientas Usadas</h3>
+            <div class="space-y-3">
+              <div class="rounded border border-zinc-800 bg-zinc-950/20 p-3">
+                <p class="mb-1 text-xs font-medium text-zinc-400">MKT Lead (Ema)</p>
+                <p class="text-sm text-zinc-300">"Planeación: Claude, Gemini, ChatGPT (en ese orden). Ejecución: Claude y Gemini. Imagen: Gemini para generación de imágenes. Notion para calendario y Canva para imágenes promocionales."</p>
+              </div>
+              <div class="rounded border border-zinc-800 bg-zinc-950/20 p-3">
+                <p class="mb-1 text-xs font-medium text-zinc-400">Content Lead (Anthony)</p>
+                <p class="text-sm text-zinc-300">"Google Calendar. Streamyard para hacer los lives. Youtube Studio para ordenar el contenido. Para edición uso Capcut. Todos los días uso Claude, Antigravity."</p>
+              </div>
+              <div class="rounded border border-zinc-800 bg-zinc-950/20 p-3">
+                <p class="mb-1 text-xs font-medium text-zinc-400">Technical Lead (Scarf)</p>
+                <p class="text-sm text-zinc-300">"Telegram, VsCode, Openclaw (tiene acceso a la data), Claude, publico en X y LinkedIn diario, y TikTok cada 3 días. OVS para grabar video de compu."</p>
+              </div>
             </div>
           </div>
-        </section>
 
-        <footer class="pt-6 text-xs text-zinc-500">
-          <div class="flex items-center justify-between">
-            <p>Análisis generado por: <span class="text-zinc-300">Pantera — AI Operations Analyst</span></p>
-            <p>Frutero Club Internal Systems</p>
+          <!-- Theme: Dependencias -->
+          <div>
+            <h3 class="mb-3 text-sm font-semibold text-rose-400">Dependencias Críticas</h3>
+            <div class="space-y-3">
+              <div class="rounded border border-zinc-800 bg-zinc-950/20 p-3">
+                <p class="mb-1 text-xs font-medium text-zinc-400">Community Lead (Jazz)</p>
+                <p class="text-sm text-zinc-300">"Directamente dependo de que me den luz verde con cosas, comunicación con la comunidad necesito certeza con fechas, lugares, requerimientos. En cuanto a cursos necesito que me avisen cuando las cosas están listas para yo comunicarlas."</p>
+              </div>
+              <div class="rounded border border-zinc-800 bg-zinc-950/20 p-3">
+                <p class="mb-1 text-xs font-medium text-zinc-400">MKT Lead (Ema)</p>
+                <p class="text-sm text-zinc-300">"Yo planeo el contenido; pero necesito que el editor tenga listos los videos (editados y subidos) y de ahí yo los reviso y publico. Dependo de que haya planeación de parte de otros miembros para que me digan qué necesitan publicar."</p>
+              </div>
+              <div class="rounded border border-zinc-800 bg-zinc-950/20 p-3">
+                <p class="mb-1 text-xs font-medium text-zinc-400">Content Lead (Anthony)</p>
+                <p class="text-sm text-zinc-300">"En las fechas de los lives o de los eventos, no tenemos coordinado todavía, y yo tengo que esperar a que me lo digan (en caso de lives: títulos, horas)."</p>
+              </div>
+            </div>
           </div>
-        </footer>
-      </div>
-    </section>
+
+          <!-- Theme: Tareas Repetitivas -->
+          <div>
+            <h3 class="mb-3 text-sm font-semibold text-amber-400">Tareas Repetitivas (oportunidades de automatización)</h3>
+            <div class="space-y-3">
+              <div class="rounded border border-zinc-800 bg-zinc-950/20 p-3">
+                <p class="mb-1 text-xs font-medium text-zinc-400">Technical Lead (Scarf)</p>
+                <p class="text-sm text-zinc-300">"Tickets de desarrollo es repetitivo, cada semana hay algo. Entrega de reportes y monitoreo de rendimiento de las implementaciones."</p>
+              </div>
+              <div class="rounded border border-zinc-800 bg-zinc-950/20 p-3">
+                <p class="mb-1 text-xs font-medium text-zinc-400">Community Lead (Jazz)</p>
+                <p class="text-sm text-zinc-300">"Los mensajes de TG todo el tiempo, publicar cosas de trabajo en redes desde mi cuenta personal, apoyo con copys y visuales para mkt, POAPs."</p>
+              </div>
+              <div class="rounded border border-zinc-800 bg-zinc-950/20 p-3">
+                <p class="mb-1 text-xs font-medium text-zinc-400">Content Lead (Anthony)</p>
+                <p class="text-sm text-zinc-300">"Los lunes checo qué tenemos en la semana, para crear los eventos en el calendario y los lives en el streamyard. Edición de los videos es una actividad manual repetitiva."</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Section: Recomendaciones de Mejora -->
+      <section class="mb-6 rounded-xl border border-emerald-800/50 bg-emerald-950/20 p-6">
+        <h2 class="mb-4 text-lg font-semibold text-emerald-200">🚀 Recomendaciones de Mejora (próximos 30 días)</h2>
+        
+        <div class="space-y-4">
+          
+          <div class="rounded-lg border border-emerald-800/30 bg-emerald-950/20 p-4">
+            <h3 class="mb-2 text-sm font-semibold text-emerald-300">Semana 1: Setup Básico</h3>
+            <ul class="ml-4 space-y-1 text-sm text-zinc-300 list-disc">
+              <li>Crear tablero Now/Next/Blocked en Notion (1 por proyecto)</li>
+              <li>Asignar DRIs por dominio y anunciar en daily</li>
+              <li>Crear brief template en Notion</li>
+              <li>Establecer change window policy (Lunes/Jueves 10am)</li>
+            </ul>
+          </div>
+
+          <div class="rounded-lg border border-emerald-800/30 bg-emerald-950/20 p-4">
+            <h3 class="mb-2 text-sm font-semibold text-emerald-300">Semana 2-3: Proceso de Soporte</h3>
+            <ul class="ml-4 space-y-1 text-sm text-zinc-300 list-disc">
+              <li>Crear cola de soporte triaged por Community/Ops</li>
+              <li>Tech solo recibe bugs confirmados + features priorizadas</li>
+              <li>Documentar FAQs para respuestas rápidas</li>
+            </ul>
+          </div>
+
+          <div class="rounded-lg border border-emerald-800/30 bg-emerald-950/20 p-4">
+            <h3 class="mb-2 text-sm font-semibold text-emerald-300">Semana 4: Learnings & Visión</h3>
+            <ul class="ml-4 space-y-1 text-sm text-zinc-300 list-disc">
+              <li>Crear wiki/repositorio de learnings (prompts, procesos, wins)</li>
+              <li>Publicar roadmap trimestral (próximos 3 meses)</li>
+              <li>Ritual: captura de learnings en retros semanales</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
 
   </main>
+
+  <script>
+    function switchTab(tabName) {
+      // Hide all content
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      // Remove active from all buttons
+      document.querySelectorAll('.tab-btn').forEach(el => {
+        el.classList.remove('active', 'border-cyan-500', 'text-cyan-400');
+        el.classList.add('text-zinc-400');
+      });
+      
+      // Show selected content
+      document.getElementById('content-' + tabName).classList.remove('hidden');
+      // Mark button as active
+      const btn = document.getElementById('tab-' + tabName);
+      btn.classList.add('active', 'border-cyan-500', 'text-cyan-400');
+      btn.classList.remove('text-zinc-400');
+    }
+    
+    // Initialize first tab
+    switchTab('executive');
+  </script>
+
 </body>
 </html>
